@@ -10,50 +10,22 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet var navigationBar: UINavigationItem!
-    // 버튼을 배열로 만들면 안되는건가
-    //    @IBOutlet var emotionButton: [UIButton]!
-    @IBOutlet var oneButton: UIButton!
-    @IBOutlet var twoButton: UIButton!
-    @IBOutlet var threeButton: UIButton!
-    @IBOutlet var fourButton: UIButton!
-    @IBOutlet var fiveButton: UIButton!
-    @IBOutlet var sixButton: UIButton!
-    @IBOutlet var sevenButton: UIButton!
-    @IBOutlet var eightButton: UIButton!
-    @IBOutlet var nineButton: UIButton!
-    //    @IBOutlet var emotionLabel: [UILabel]!
-    @IBOutlet var oneLabel: UILabel!
-    @IBOutlet var twoLabel: UILabel!
-    @IBOutlet var threeLabel: UILabel!
-    @IBOutlet var fourLabel: UILabel!
-    @IBOutlet var fiveLabel: UILabel!
-    @IBOutlet var sixLabel: UILabel!
-    @IBOutlet var sevenLabel: UILabel!
-    @IBOutlet var eightLabel: UILabel!
-    @IBOutlet var nineLabel: UILabel!
+    @IBOutlet var emotionButton: [UIButton]!
+    @IBOutlet var emotionLabel: [UILabel]!
     @IBOutlet var resetButton: UIButton!
     
     var emotionList = ["행복해", "사랑해", "좋아해", "당황해", "속상해", "우울해", "심심해", "행복해", "행복해"]
-    var count = [0,0,0,0,0,0,0,0,0]
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationTitle()
         
-        // 이렇게 다 불러줘야되는건가? 정녕???
-        emotionImg(oneButton, label: oneLabel)
-        emotionImg(twoButton, label: twoLabel)
-        emotionImg(threeButton, label: threeLabel)
-        emotionImg(fourButton, label: fourLabel)
-        emotionImg(fiveButton, label: fiveLabel)
-        emotionImg(sixButton, label: sixLabel)
-        emotionImg(sevenButton, label: sevenLabel)
-        emotionImg(eightButton, label: eightLabel)
-        emotionImg(nineButton, label: nineLabel)
+        for index in 0...emotionList.count-1 {
+            setButton(emotionButton[index])
+        }
         
-        resetButton.setTitle("0부터 사랑하라", for: .normal)
-        
+        resetButton(resetButton)
     }
     
     func navigationTitle() {
@@ -66,26 +38,34 @@ class ViewController: UIViewController {
         
     }
     
-    func emotionImg(_ button: UIButton, label: UILabel) {
-        
-        button.setImage(UIImage(named: "slime\(button.tag+1)"), for: .normal)
-        label.text = "\(emotionList[button.tag]) \(count[button.tag])"
+    func setButton(_ sender: UIButton) {
+        let tagNum = sender.tag // 이게 공통적으로 들어가있는 곳이 많은데 밖으로 뺄 수가 있나?
+        emotionButton[tagNum].setImage(UIImage(named: "slime\(tagNum+1)"), for: .normal)
+        emotionLabel[tagNum].text = "\(emotionList[tagNum]) \(UserDefaults.standard.integer(forKey: "\(tagNum)"))"
     }
     
-    @IBAction func emotionButtonClicked(_ sender: UIButton) {
+    // 숫자가 변화하면 레이아웃이 왔다갔다해 확인해 지은!
+    @IBAction func buttonClicked(_ sender: UIButton, index: Int) {
+        // 여길 뭔가 깔끔하게 쓸 수 있을 것 같은데,,
+        let tagNum = sender.tag
+        let count = UserDefaults.standard.integer(forKey: "\(tagNum)")
+        let countUp = count + 1
+        UserDefaults.standard.set(countUp, forKey: "\(tagNum)")
+        emotionLabel[tagNum].text = "\(emotionList[tagNum]) \(UserDefaults.standard.integer(forKey: "\(tagNum)"))"
+    }
+    
+    @IBAction func resetButtonClicked(_ sender: UIButton) {
         
-        count[sender.tag] += 1
-        
-        // 아니 왜 저 숫자에 sender.tag 넣으면 되는거 아닌가???? 왜 안되는거같지??? 신발
-        // 숫자가 늘어나면 레이아웃이 왔다갔다함 확인해라!
-        oneLabel.text = "\(emotionList[0]) \(count[0])"
-        twoLabel.text = "\(emotionList[1]) \(count[1])"
-        threeLabel.text = "\(emotionList[2]) \(count[2])"
-        fourLabel.text = "\(emotionList[3]) \(count[3])"
-        fiveLabel.text = "\(emotionList[4]) \(count[4])"
-        sixLabel.text = "\(emotionList[5]) \(count[5])"
-        sevenLabel.text = "\(emotionList[6]) \(count[6])"
-        eightLabel.text = "\(emotionList[7]) \(count[7])"
-        nineLabel.text = "\(emotionList[8]) \(count[8])"
+        for index in 0...8 {
+            let tagNum = emotionButton[index].tag
+            UserDefaults.standard.removeObject(forKey: "\(tagNum)")
+            emotionLabel[tagNum].text = "\(emotionList[tagNum]) \(UserDefaults.standard.integer(forKey: "\(tagNum)"))"
+        }
+    }
+    
+    func resetButton(_ sender: UIButton) {
+        sender.setTitle("0부터 사랑하세요!", for: .normal)
+        sender.setTitleColor(.white, for: .normal)
+        sender.backgroundColor = .red
     }
 }
