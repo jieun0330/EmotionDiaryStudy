@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C2A2E0D52B6F064100957186 /* UserdefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A2E0D42B6F064100957186 /* UserdefaultManager.swift */; };
 		C2ABEEE32B441039008F4367 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ABEEE22B441039008F4367 /* AppDelegate.swift */; };
 		C2ABEEE52B441039008F4367 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ABEEE42B441039008F4367 /* SceneDelegate.swift */; };
 		C2ABEEE72B441039008F4367 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ABEEE62B441039008F4367 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C2A2E0D42B6F064100957186 /* UserdefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserdefaultManager.swift; sourceTree = "<group>"; };
 		C2ABEEDF2B441039008F4367 /* SeSAC_HW_EmotionDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_HW_EmotionDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2ABEEE22B441039008F4367 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2ABEEE42B441039008F4367 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				C2ABEEEB2B44103A008F4367 /* Assets.xcassets */,
 				C2ABEEED2B44103A008F4367 /* LaunchScreen.storyboard */,
 				C2ABEEF02B44103B008F4367 /* Info.plist */,
+				C2A2E0D42B6F064100957186 /* UserdefaultManager.swift */,
 			);
 			path = SeSAC_HW_EmotionDiary;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			files = (
 				C2ABEEE72B441039008F4367 /* ViewController.swift in Sources */,
 				C2ABEEE32B441039008F4367 /* AppDelegate.swift in Sources */,
+				C2A2E0D52B6F064100957186 /* UserdefaultManager.swift in Sources */,
 				C2ABEEE52B441039008F4367 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
